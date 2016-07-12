@@ -18,6 +18,11 @@ public class JoinNowPage {
     @FindBy(how = How.CLASS_NAME, using = "frm_message")
     private WebElement message;
 
+    @FindBy(how = How.CLASS_NAME, using = "frm_error")
+    private WebElement errorMessage;
+
+
+
     public JoinNowPage(WebDriver driver){
         PageFactory.initElements(driver,this);
     }
@@ -34,4 +39,9 @@ public class JoinNowPage {
     public String getMessage(){
         return message.getText();
     }
+
+    public String getErrorMessage(){
+        return errorMessage.getText();
+    }
+
 }
