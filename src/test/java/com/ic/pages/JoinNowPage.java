@@ -1,10 +1,9 @@
 package com.ic.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 public class JoinNowPage {
@@ -21,27 +20,33 @@ public class JoinNowPage {
     @FindBy(how = How.CLASS_NAME, using = "frm_error")
     private WebElement errorMessage;
 
+    @FindBy(how = How.CLASS_NAME, using = "frm_error_style")
+    private WebElement multipleSubmissionErrorMessage;
 
 
-    public JoinNowPage(WebDriver driver){
-        PageFactory.initElements(driver,this);
+    public JoinNowPage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
     }
 
-    public void setPhoneNumber(String phoneNumber){
+    public void setPhoneNumber(String phoneNumber) {
         phoneNumberTextbox.isDisplayed();
         phoneNumberTextbox.sendKeys(phoneNumber);
     }
 
-    public void submitPhoneNumber(){
+    public void submitPhoneNumber() {
         getTheAppButton.click();
     }
 
-    public String getMessage(){
+    public String getMessage() {
         return message.getText();
     }
 
-    public String getErrorMessage(){
+    public String getErrorMessage() {
         return errorMessage.getText();
+    }
+
+    public String getMultipleSubmissionErrorMessage() {
+        return multipleSubmissionErrorMessage.getText();
     }
 
 }
