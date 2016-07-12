@@ -1,5 +1,7 @@
 package com.ic.automation;
 import java.util.concurrent.TimeUnit;
+
+import com.ic.pages.JoinNowPage;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.openqa.selenium.*;
@@ -35,10 +37,12 @@ public class CurveTest {
     public void ensureThatUserCanSubmitMobileNumberToGetAppDownloadLink(){
 
         driver.get(baseUrl + "/joinnow/");
-        driver.findElement(By.id("field_38kar")).isDisplayed();
-        driver.findElement(By.id("field_38kar")).sendKeys("7768996680");
-        driver.findElement(By.className("frm_submit")).click();
-        assertTrue("Success message is not present",driver.findElement(By.className("frm_message")).getText().contains("We've sent you a link to download the app"));
+
+        JoinNowPage joinNowPage = new JoinNowPage(driver);
+        joinNowPage.setPhoneNumber("7768996680");
+        joinNowPage.submitPhoneNumber();
+
+        assertTrue("Success message is not present",joinNowPage.getMessage().contains("We've sent you a link to download the app"));
 
     }
 
